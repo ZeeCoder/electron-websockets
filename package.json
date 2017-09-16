@@ -1,0 +1,24 @@
+{
+  "name": "electron-websockets",
+  "version": "1.0.0",
+  "main": "app/main.js",
+  "repository": "git@github.com:ZeeCoder/electron-websockets.git",
+  "author": "Viktor Hubert <rpgmorpheus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "fix:js": "prettier --write"
+  },
+  "lint-staged": {
+    "*.js": [
+        "yarn run fix:js",
+        "git add"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^1.7.6",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.1",
+    "prettier": "^1.7.0"
+  }
+}
