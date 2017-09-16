@@ -6,7 +6,19 @@
   </head>
   <body>
     
-    <h1>Hello World</h1>
+    <div id="server-section">
+      <button id="start-server">Start Server</button>
+      <div id="server-ip-container"></div>
+    </div>
+    
+    <br><br>
+
+    <div id="client-section">
+      <button id="client-button">Connect to the Server: </button>
+      <input type="text" id="server-ip-input" placeholder="IP">
+    </div>
+    
+    <script>require("./app.js");</script>
     
   </body>
 </html>

@@ -15,9 +15,13 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "lint-staged": {
-    "*.js": ["yarn run fix:js", "git add"]
+    "*.js": [
+      "yarn run fix:js",
+      "git add"
+    ]
   },
   "dependencies": {
+    "ip": "^1.1.5",
     "ws": "^3.2.0"
   },
   "devDependencies": {

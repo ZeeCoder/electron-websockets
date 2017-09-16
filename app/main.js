@@ -1,6 +1,30 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
+const { ipcMain } = require("electron");
+const ip = require("ip");
+const WebSocket = require("ws");
+
+let wss = null;
+ipcMain.on("start-server", e => {
+  if (wss) {
+    e.returnValue = ip.address();
+    return;
+  }
+
+  wss = new WebSocket.Server({ port: 8080 });
+
+  wss.on("connection", function connection(ws) {
+    console.log("connection!");
+    ws.on("message", function incoming(message) {
+      console.log("received: %s", message);
+    });
+
+    ws.send("Welcome from the Server.");
+  });
+
+  e.returnValue = ip.address();
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
