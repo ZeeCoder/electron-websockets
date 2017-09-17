@@ -3,19 +3,67 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      .dataCaptureWrapper {
+        border: 1px solid;
+      }
+      
+      .dataCapture + .dataCapture {
+        border-top: 1px solid;
+      }
+      
+      .dataCapture {
+        padding: 10px;
+      }
+    </style>
   </head>
+  
+  
   <body>
     
-    <div id="server-section">
-      <button id="start-server">Start Server</button>
-      <div id="server-ip-container"></div>
+    <div id="server-section" style="margin-bottom: 30px">
+      <div id="server-inactive-section">
+        <button id="start-server">Start as Server</button>
+      </div>
+
+      <div id="server-active-section" style="display: none">
+        <div>
+          <h3>Data Capture Server</h3>
+          <div>
+            Server IP: <span id="server-ip-container"></span>
+          </div>
+          <br>
+          <h2>Incoming Data Captures</h2>
+          <div id="dataCaptureWrapper" class="dataCaptureWrapper"></div>
+        </div>
+      </div>
     </div>
-    
-    <br><br>
 
     <div id="client-section">
-      <button id="client-button">Connect to the Server: </button>
-      <input type="text" id="server-ip-input" placeholder="IP">
+      <div id="client-inactive-section">
+        <button id="client-button">Connect as Client to:</button>
+        <input type="text" id="server-ip-input" placeholder="IP">
+      </div>
+      
+      <div id="client-active-section" style="display: none">
+        <h3>Data Capture Client</h3>
+        <div>
+          Connected To: <span id="connected-to"></span>
+        </div>
+        <br>
+        <form id="form">
+          <div>
+            <label>Name</label>
+            <input type="text" id="form-name">
+          </div>
+          <div>
+            <label>E-mail</label>
+            <input type="text" id="form-email">
+          </div>
+          <br>
+          <input type="button" id="form-submit" value="Send to Server">
+        </form>
+      </div>
     </div>
     
     <script>require("./app.js");</script>

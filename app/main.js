@@ -17,7 +17,21 @@ ipcMain.on("start-server", e => {
   wss.on("connection", function connection(ws) {
     console.log("connection!");
     ws.on("message", function incoming(message) {
-      console.log("received: %s", message);
+      console.log("Message received: %s", message);
+
+      try {
+        message = JSON.parse(message);
+      } catch (e) {
+        console.error("Non-json message:", message, e);
+        return;
+      }
+
+      if (message.type !== "data-capture") {
+        console.log("Missing message type.");
+        return;
+      }
+
+      win.webContents.send("data-capture", message.data);
     });
 
     ws.send("Welcome from the Server.");
@@ -44,7 +58,7 @@ function createWindow() {
   );
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", () => {
