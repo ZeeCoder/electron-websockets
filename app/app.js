@@ -12,10 +12,13 @@ function startClient() {
     return;
   }
 
-  ws = new WebSocket("ws:localhost:8080");
+  let serverIp = serverIpInput.value;
+  console.log(`Connecting to: ${serverIp}...`);
+  ws = new WebSocket(`ws:${serverIp}:8080`);
 
   ws.onopen = e => {
     console.log("Open: ", e);
+    console.log(`Connected to: ${serverIp}`);
     serverSection.style.display = "none";
   };
   ws.onclose = e => console.log("Close: ", e);
